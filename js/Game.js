@@ -40,12 +40,24 @@ class Game {
 
   play() {
     this.handleElements();
-
     Player.getPlayersInfo();
-
     if (allPlayers !== undefined) {
-      image(track, 0, -height * 5, width, height * 6);
-
+      image(track, 0, -height * 5, width, height * 6); // imagem da trilha
+      var index = 0;
+      // loop for-in para atribuir uma posição a cada carro
+      for (var plr in allPlayers) {
+        //add 1 para o indice toda vez que for um loop
+        index = index + 1;
+        //busca os dados do banco de dados para posicionar os jogadores na tela
+        var x = allPlayers[plr].positionX;
+        var y = height - allPlayers[plr].positionY;
+        cars[index - 1].position.x = x;
+        cars[index - 1].position.y = y;
+      }
+      if (keyIsDown(UP_ARROW)) { //movimento do carro com a seta de cima
+       player.positionY += 10;
+       player.update();
+      }
       drawSprites();
     }
   }
