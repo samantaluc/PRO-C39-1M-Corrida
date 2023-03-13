@@ -34,6 +34,15 @@ class Player {
       playerCount: count
     });
   }
+  
+  update() { //atualiza as informações dos jogadores
+    var playerIndex = "players/player" + this.index;
+    database.ref(playerIndex).update({
+      name: this.name,
+      positionX: this.positionX,
+      positionY: this.positionY,
+    });
+  }
 
   static getPlayersInfo() {
     var playerInfoRef = database.ref("players");
